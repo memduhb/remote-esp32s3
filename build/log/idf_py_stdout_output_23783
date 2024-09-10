@@ -1,0 +1,7 @@
+[1/4] cd /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/esp-idf/esptool_py && /Users/memduh/.espressif/python_env/idf5.3_py3.12_env/bin/python /Users/memduh/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 partition --type app /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/partition_table/partition-table.bin /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/gatt_client_demo.bin
+gatt_client_demo.bin binary size 0xb8c80 bytes. Smallest app partition is 0x100000 bytes. 0x47380 bytes (28%) free.
+[2/4] Performing build step for 'bootloader'
+[1/1] cd /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader/esp-idf/esptool_py && /Users/memduh/.espressif/python_env/idf5.3_py3.12_env/bin/python /Users/memduh/esp/esp-idf/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader/bootloader.bin
+Bootloader binary size 0x5260 bytes. 0x2da0 bytes (36%) free.
+[3/4] No install step for 'bootloader'
+[4/4] Completed 'bootloader'

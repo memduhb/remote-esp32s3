@@ -1,0 +1,561 @@
+[0;32mI (232) esp_image: segment 4: paddr=000bde08 vaddr=4037d500 size=0acdchESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (27) boot: ESP-IDF v5.3-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep 10 2024 10:14:24[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.1[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (44) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+[0;32mI (54) boot: Partition Table:[0m
+[0;32mI (57) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (65) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (79) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=22a70h (141936) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00032a98 vaddr=3fc98200 size=04078h ( 16504) load[0m
+[0;32mI (129) esp_image: segment 2: paddr=00036b18 vaddr=40374000 size=09500h ( 38144) load[0m
+[0;32mI (139) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=7dde0h (515552) map[0m
+[0;32mI (232) esp_image: segment 4: paddr=000bde08 vaddr=4037d500 size=0acdch ( 44252) load[0m
+[0;32mI (250) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (250) boot: Disabling RNG early entropy source...[0m
+[0;32mI (262) cpu_start: Multicore app[0m
+[0;32mI (272) cpu_start: Pro cpu start user code[0m
+[0;32mI (272) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (272) app_init: Application information:[0m
+[0;32mI (275) app_init: Project name:     gatt_client_demo[0m
+[0;32mI (281) app_init: App version:      v5.3-dirty[0m
+[0;32mI (286) app_init: Compile time:     Sep 10 2024 10:14:12[0m
+[0;32mI (292) app_init: ELF file SHA256:  1a51b25a4...[0m
+[0;32mI (297) app_init: ESP-IDF:          v5.3-dirty[0m
+[0;32mI (302) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (307) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (312) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (317) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (324) heap_init: At 3FCA0338 len 000493D8 (292 KiB): RAM[0m
+[0;32mI (330) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (336) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (342) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (350) spi_flash: detected chip: generic[0m
+[0;32mI (353) spi_flash: flash io: dio[0m
+[0;33mW (357) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (370) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (377) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (384) coexist: coex firmware version: dab85ae96[0m
+[0;32mI (399) coexist: coexist rom version e7ae62f[0m
+[0;32mI (400) main_task: Started on CPU0[0m
+[0;32mI (410) main_task: Calling app_main()[0m
+[0;32mI (430) BLE_INIT: BT controller compile version [ba3b3e3][0m
+[0;32mI (430) BLE_INIT: Bluetooth MAC: 34:85:18:49:28:16[0m
+[0;32mI (430) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (500) GATTC_DEMO: GATTC application register, status 0, app_id 0[0m
+[0;32mI (510) GAPC_DEMO: Scanning start successfully[0m
+[0;32mI (510) main_task: Returned from app_main()[0m
+[0;32mI (510) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (520) GAPC_DEMO: Scan result, device 1a:b5:52:38:86:6b, name len 0[0m
+[0;32mI (530) GAPC_DEMO: Scan result, device 43:94:7d:cb:46:34, name len 0[0m
+[0;32mI (530) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (540) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (1540) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (2520) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (2530) GAPC_DEMO: Scan result, device 60:c2:21:bf:83:55, name len 0[0m
+[0;32mI (2530) GAPC_DEMO: Scan result, device 42:28:31:94:a9:b7, name len 0[0m
+[0;32mI (2530) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (2540) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (2550) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (2560) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 18[0m
+[0;32mI (2560) GATTC_DEMO: Sca476f06e84bfec[0m
+[0;32mI (2570) GATTC_DEMO: 0C[0m
+[0;32mI (2570) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (3510) GAPC_DEMO: Scan result, device 43:94:7d:cb:46:34, name len 0[0m
+[0;32mI (3510) GAPC_DEMO: Scan result, device 08:93:e2:a7:d8:19, name len 0[0m
+[0;32mI (3520) GAPC_DEMO: Scan result, device 18:20:62:3e:7a:98, name len 0[0m
+[0;32mI (3530) GAPC_DEMO: Scan result, device cb:ba:52:88:eb:74, name len 0[0m
+[0;32mI (3540) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (3540) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 10[0m
+[0;32mI (3540) GATTC_DEMO: ruwido BLE[0m
+[0;32mI (3540) GAPC_DEMO: Device found ruwido BLE[0m
+[0;32mI (3550) GATTC_DEMO: Connect to 30:45:11:ed:cd:30[0m
+[0;32mI (3560) GAPC_DEMO: Scanning stop successfully[0m
+[0;32mI (3560) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (3600) GATTC_DEMO: Connected, conn_id 0, remote 30:45:11:ed:cd:30[0m
+[0;32mI (3610) GATTC_DEMO: Open successfully, mtu 23[0m
+[0;32mI (5730) GATTC_DEMO: Service discover complete, conn_id 0[0m
+[0;32mI (5730) GATTC_DEMO: Search result, conn_id = 0, is primary service 1[0m
+[0;32mI (5730) GATTC_DEMO: start handle 56, end handle 64, current handle value 56[0m
+[0;32mI (5740) GATTC_DEMO: Service found[0m
+[0;32mI (5740) GATTC_DEMO: UUID128 matched[0m
+[0;32mI (5750) GATTC_DEMO: Get service information from remote device[0m
+[0;32mI (5750) GATTC_DEMO: Service search complete[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x4206f524  PS      : 0x00060930  A0      : 0x82066e82  A1      : 0x3fcae730  
+A2      : 0x3fcaedb0  A3      : 0x3fcae924  A4      : 0x00000038  A5      : 0x00000038  
+A6      : 0x3fcaea60  A7      : 0x00000000  A8      : 0x00000000  A9      : 0x00000000  
+A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcae740  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0x3fca1060  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000038  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xffffffff  
+
+
+Backtrace: 0x4206f521:0x3fcae730 0x42066e7f:0x3fcaea50 0x4200afea:0x3fcaeaa0 0x4200ac75:0x3fcaeaf0 0x4200fd42:0x3fcaeb20 0x42010411:0x3fcaeb40 0x42033c99:0x3fcaeb90 0x42036193:0x3fcaebb0 0x4038026d:0x3fcaebe0
+
+
+
+
+ELF file SHA256: 1a51b25a4
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403759f0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (31) boot: ESP-IDF v5.3-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Sep 10 2024 10:14:24[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v0.1[0m
+[0;32mI (38) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (43) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=22a70h (141936) map[0m
+[0;32mI (129) esp_image: segment 1: paddr=00032a98 vaddr=3fc98200 size=04078h ( 16504) load[0m
+[0;32mI (133) esp_image: segment 2: paddr=00036b18 vaddr=40374000 size=09500h ( 38144) load[0m
+[0;32mI (144) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=7dde0h (515552) map[0m
+[0;32mI (236) esp_image: segment 4: paddr=000bde08 vaddr=4037d500 size=0acdch ( 44252) load[0m
+[0;32mI (255) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (255) boot: Disabling RNG early entropy source...[0m
+[0;32mI (266) cpu_start: Multicore app[0m
+[0;32mI (276) cpu_start: Pro cpu start user code[0m
+[0;32mI (276) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (277) app_init: Application information:[0m
+[0;32mI (279) app_init: Project name:     gatt_client_demo[0m
+[0;32mI (285) app_init: App version:      v5.3-dirty[0m
+[0;32mI (290) app_init: Compile time:     Sep 10 2024 10:14:12[0m
+[0;32mI (296) app_init: ELF file SHA256:  1a51b25a4...[0m
+[0;32mI (301) app_init: ESP-IDF:          v5.3-dirty[0m
+[0;32mI (307) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (311) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (316) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (321) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (328) heap_init: At 3FCA0338 len 000493D8 (292 KiB): RAM[0m
+[0;32mI (334) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (347) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (354) spi_flash: detected chip: generic[0m
+[0;32mI (358) spi_flash: flash io: dio[0m
+[0;33mW (362) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (375) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (382) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (389) coexist: coex firmware version: dab85ae96[0m
+[0;32mI (403) coexist: coexist rom version e7ae62f[0m
+[0;32mI (404) main_task: Started on CPU0[0m
+[0;32mI (414) main_task: Calling app_main()[0m
+[0;32mI (434) BLE_INIT: BT controller compile version [ba3b3e3][0m
+[0;32mI (434) BLE_INIT: Bluetooth MAC: 34:85:18:49:28:16[0m
+[0;32mI (434) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (504) GATTC_DEMO: GATTC application register, status 0, app_id 0[0m
+[0;32mI (504) GAPC_DEMO: Scanning start successfully[0m
+[0;32mI (504) main_task: Returned from app_main()[0m
+[0;32mI (524) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (534) GAPC_DEMO: Scan result, device 1a:b5:52:38:86:6b, name len 0[0m
+[0;32mI (534) GAPC_DEMO: Scan result, device 1a:00:cd:b1:74:37, name len 0[0m
+[0;32mI (544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (544) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (554) GAPC_DEMO: Scan result, device 18:20:62:3e:7a:98, name len 0[0m
+[0;32mI (564) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (1514) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (1524) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (1534) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (1534) GAPC_DEMO: Scan result, device cc:13:ea:01:5b:de, name len 18[0m
+[0;32mI (1544) GATTC_DEMO: CRBOX-FCEE12015B[0m
+[0;32mI (1544) GATTC_DEMO: DE[0m
+[0;32mI (1544) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (1554) GAPC_DEMO: Scan result, device 01:88:5e:e8:24:de, name len 0[0m
+[0;32mI (1554) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (2504) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (2514) GAPC_DEMO: Scan result, device 52:9f:73:86:04:f8, name len 0[0m
+[0;32mI (2524) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (2524) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (2534) GAPC_DEMO: Scan result, device d8:e4:d9:0f:b0:41, name len 0[0m
+[0;32mI (2544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (2554) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (2554) GAPC_DEMO: Scan result, device 0f:d8:9a:95:72:88, name len 0[0m
+[0;32mI (3514) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (3544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (3544) GAPC_DEMO: Scan result, device 04:08:75:fe:cb:25, name len 0[0m
+[0;32mI (4524) GAPC_DEMO: Scan result, device 4f:fc:e4:08:45:d5, name len 0[0m
+[0;32mI (4524) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device d8:e4:d9:0f:b0:41, name len 0[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device 69:59:3f:b3:c7:09, name len 0[0m
+[0;32mI (4554) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (5504) GAPC_DEMO: Scan result, device 52:9f:73:86:04:f8, name len 0[0m
+[0;32mI (5524) GAPC_DEMO: Scan result, device 6d:dc:de:af:72:40, name len 0[0m
+[0;32mI (5534) GAPC_DEMO: Scan result, device 04:08:75:fe:cb:25, name len 0[0m
+[0;32mI (5534) GAPC_DEMO: Scan result, device f8:80:99:dc:2a:93, name len 0[0m
+[0;32mI (5544) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (5544) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (5554) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (6504) GAPC_DEMO: Scan result, device 69:73:4a:0f:c1:d4, name len 0[0m
+[0;32mI (6504) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (6524) GAPC_DEMO: Scan result, device d3:06:1b:9e:75:43, name len 0[0m
+[0;32mI (6524) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (6534) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (6534) GAPC_DEMO: Scan result, device d5:32:8f:3e:f4:d6, name len 0[0m
+[0;32mI (6554) GAPC_DEMO: Scan result, device 0f:a1:ae:e5:da:ca, name len 0[0m
+[0;32mI (7514) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (7514) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (7534) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (7554) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 0[0m
+[0;32mI (7554) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (8504) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 0[0m
+[0;32mI (8504) GAPC_DEMO: Scan result, device d4:b7:3c:c2:db:71, name len 0[0m
+[0;32mI (8514) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (8524) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (8544) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 0[0m
+[0;32mI (8544) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (9504) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (9514) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (9524) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 0[0m
+[0;32mI (9524) GAPC_DEMO: Scan result, device 01:88:5e:e8:24:de, name len 0[0m
+[0;32mI (9534) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (9544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (9544) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (9554) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (9554) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (9564) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (9574) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (10504) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 10[0m
+[0;32mI (10504) GATTC_DEMO: ruwido BLE[0m
+[0;32mI (10504) GAPC_DEMO: Device found ruwido BLE[0m
+[0;32mI (10514) GATTC_DEMO: Connect to 30:45:11:ed:cd:30[0m
+[0;32mI (10524) GAPC_DEMO: Scanning stop successfully[0m
+[0;32mI (10524) GAPC_DEMO: Scan result, device 7b:5c:90:c6:2e:ad, name len 0[0m
+[0;32mI (10584) GATTC_DEMO: Connected, conn_id 0, remote 30:45:11:ed:cd:30[0m
+[0;32mI (10584) GATTC_DEMO: Open successfully, mtu 23[0m
+[0;32mI (12684) GATTC_DEMO: Service discover complete, conn_id 0[0m
+[0;32mI (12684) GATTC_DEMO: Search result, conn_id = 0, is primary service 1[0m
+[0;32mI (12684) GATTC_DEMO: start handle 56, end handle 64, current handle value 56[0m
+[0;32mI (12694) GATTC_DEMO: Service found[0m
+[0;32mI (12694) GATTC_DEMO: UUID128 matched[0m
+[0;32mI (12704) GATTC_DEMO: Get service information from remote device[0m
+[0;32mI (12704) GATTC_DEMO: Service search complete[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x4206f524  PS      : 0x00060930  A0      : 0x82066e82  A1      : 0x3fcae730  
+A2      : 0x3fcaedb0  A3      : 0x3fcae924  A4      : 0x00000038  A5      : 0x00000038  
+A6      : 0x3fcaea60  A7      : 0x00000000  A8      : 0x00000000  A9      : 0x00000000  
+A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcae740  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0x3fca1060  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000038  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xffffffff  
+
+
+Backtrace: 0x4206f521:0x3fcae730 0x42066e7f:0x3fcaea50 0x4200afea:0x3fcaeaa0 0x4200ac75:0x3fcaeaf0 0x4200fd42:0x3fcaeb20 0x42010411:0x3fcaeb40 0x42033c99:0x3fcaeb90 0x42036193:0x3fcaebb0 0x4038026d:0x3fcaebe0
+
+
+
+
+ELF file SHA256: 1a51b25a4
+
+Rebooting...
+���ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403759f0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (31) boot: ESP-IDF v5.3-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Sep 10 2024 10:14:24[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v0.1[0m
+[0;32mI (38) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (43) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=22a70h (141936) map[0m
+[0;32mI (129) esp_image: segment 1: paddr=00032a98 vaddr=3fc98200 size=04078h ( 16504) load[0m
+[0;32mI (133) esp_image: segment 2: paddr=00036b18 vaddr=40374000 size=09500h ( 38144) load[0m
+[0;32mI (144) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=7dde0h (515552) map[0m
+[0;32mI (236) esp_image: segment 4: paddr=000bde08 vaddr=4037d500 size=0acdch ( 44252) load[0m
+[0;32mI (255) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (255) boot: Disabling RNG early entropy source...[0m
+[0;32mI (266) cpu_start: Multicore app[0m
+[0;32mI (276) cpu_start: Pro cpu start user code[0m
+[0;32mI (276) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (277) app_init: Application information:[0m
+[0;32mI (279) app_init: Project name:     gatt_client_demo[0m
+[0;32mI (285) app_init: App version:      v5.3-dirty[0m
+[0;32mI (290) app_init: Compile time:     Sep 10 2024 10:14:12[0m
+[0;32mI (296) app_init: ELF file SHA256:  1a51b25a4...[0m
+[0;32mI (301) app_init: ESP-IDF:          v5.3-dirty[0m
+[0;32mI (307) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (311) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (316) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (321) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (328) heap_init: At 3FCA0338 len 000493D8 (292 KiB): RAM[0m
+[0;32mI (334) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (347) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (354) spi_flash: detected chip: generic[0m
+[0;32mI (358) spi_flash: flash io: dio[0m
+[0;33mW (362) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (375) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (382) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (389) coexist: coex firmware version: dab85ae96[0m
+[0;32mI (403) coexist: coexist rom version e7ae62f[0m
+[0;32mI (404) main_task: Started on CPU0[0m
+[0;32mI (414) main_task: Calling app_main()[0m
+[0;32mI (434) BLE_INIT: BT controller compile version [ba3b3e3][0m
+[0;32mI (434) BLE_INIT: Bluetooth MAC: 34:85:18:49:28:16[0m
+[0;32mI (434) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (504) GATTC_DEMO: GATTC application register, status 0, app_id 0[0m
+[0;32mI (504) GAPC_DEMO: Scanning start successfully[0m
+[0;32mI (504) main_task: Returned from app_main()[0m
+[0;32mI (504) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (514) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (524) GAPC_DEMO: Scan result, device 3d:ff:28:b9:70:0d, name len 0[0m
+[0;32mI (534) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (534) GAPC_DEMO: Scan result, device 43:94:7d:cb:46:34, name len 0[0m
+[0;32mI (544) GAPC_DEMO: Scan result, device 69:73:4a:0f:c1:d4, name len 0[0m
+[0;32mI (554) GAPC_DEMO: Scan result, device 69:59:3f:b3:c7:09, name len 0[0m
+[0;32mI (554) GAPC_DEMO: Scan result, device 57:dd:cd:5c:ed:36, name len 0[0m
+[0;32mI (564) GAPC_DEMO: Scan result, device 08:93:e2:a7:d8:19, name len 0[0m
+[0;32mI (574) GAPC_DEMO: Scan result, device cc:51:a4:f1:1c:4c, name len 0[0m
+[0;32mI (574) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (584) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (594) GAPC_DEMO: Scan result, device 52:9f:73:86:04:f8, name len 0[0m
+[0;32mI (1524) GAPC_DEMO: Scan result, device cc:13:ea:01:5b:de, name len 18[0m
+[0;32mI (1524) GATTC_DEMO: CRBOX-FCEE12015B[0m
+[0;32mI (1524) GATTC_DEMO: DE[0m
+[0;32mI (1524) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (1534) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (1534) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (2514) GAPC_DEMO: Scan result, device 7b:5c:90:c6:2e:ad, name len 0[0m
+[0;32mI (2524) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (2544) GAPC_DEMO: Scan result, device 60:c2:21:bf:83:55, name len 0[0m
+[0;32mI (2544) GAPC_DEMO: Scan result, device 57:dd:cd:5c:ed:36, name len 0[0m
+[0;32mI (2544) GAPC_DEMO: Scan result, device cc:51:a4:f1:1c:4c, name len 0[0m
+[0;32mI (2554) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (3504) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (3504) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (3514) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (3514) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (3544) GAPC_DEMO: Scan result, device 52:9f:73:86:04:f8, name len 0[0m
+[0;32mI (4514) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (4524) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (4534) GAPC_DEMO: Scan result, device 04:08:75:fe:cb:25, name len 0[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device 69:59:3f:b3:c7:09, name len 0[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device 57:dd:cd:5c:ed:36, name len 0[0m
+[0;32mI (4554) GAPC_DEMO: Scan result, device cc:51:a4:f1:1c:4c, name len 0[0m
+[0;32mI (4554) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (5504) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (5514) GAPC_DEMO: Scan result, device d3:06:1b:9e:75:43, name len 0[0m
+[0;32mI (5514) GAPC_DEMO: Scan result, device 42:da:16:6c:62:b0, name len 0[0m
+[0;32mI (5514) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (5534) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (5534) GAPC_DEMO: Scan result, device 7b:5c:90:c6:2e:ad, name len 0[0m
+[0;32mI (5544) GAPC_DEMO: Scan result, device 60:c2:21:bf:83:55, name len 0[0m
+[0;32mI (5544) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (5554) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (6504) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (6524) GAPC_DEMO: Scan result, device 6f:b9:3c:20:f5:6e, name len 0[0m
+[0;32mI (6524) GAPC_DEMO: Scan result, device 73:7f:38:10:45:2d, name len 0[0m
+[0;32mI (6544) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (6544) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (7514) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (7514) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (7514) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (7524) GATTC_DEMO: 3[0m
+[0;32mI (7524) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (7534) GAPC_DEMO: Scan result, device 30:45:11:ed:cd:30, name len 10[0m
+[0;32mI (7534) GATTC_DEMO: ruwido BLE[0m
+[0;32mI (7544) GAPC_DEMO: Device found ruwido BLE[0m
+[0;32mI (7544) GATTC_DEMO: Connect to 30:45:11:ed:cd:30[0m
+[0;32mI (7554) GAPC_DEMO: Scanning stop successfully[0m
+[0;32mI (7554) GAPC_DEMO: Scan result, device 6e:c6:86:26:9b:2d, name len 0[0m
+[0;32mI (7564) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (7574) GAPC_DEMO: Scan result, device 6f:b9:3c:20:f5:6e, name len 0[0m
+[0;32mI (7584) GATTC_DEMO: Connected, conn_id 0, remote 30:45:11:ed:cd:30[0m
+[0;32mI (7584) GATTC_DEMO: Open successfully, mtu 23[0m
+[0;32mI (9684) GATTC_DEMO: Service discover complete, conn_id 0[0m
+[0;32mI (9684) GATTC_DEMO: Search result, conn_id = 0, is primary service 1[0m
+[0;32mI (9684) GATTC_DEMO: start handle 56, end handle 64, current handle value 56[0m
+[0;32mI (9694) GATTC_DEMO: Service found[0m
+[0;32mI (9694) GATTC_DEMO: UUID128 matched[0m
+[0;32mI (9704) GATTC_DEMO: Get service information from remote device[0m
+[0;32mI (9704) GATTC_DEMO: Service search complete[0m
+Guru Meditation Error: Core  0 panic'ed (LoadProhibited). Exception was unhandled.
+
+Core  0 register dump:
+PC      : 0x4206f524  PS      : 0x00060930  A0      : 0x82066e82  A1      : 0x3fcae730  
+A2      : 0x3fcaedb0  A3      : 0x3fcae924  A4      : 0x00000038  A5      : 0x00000038  
+A6      : 0x3fcaea60  A7      : 0x00000000  A8      : 0x00000000  A9      : 0x00000000  
+A10     : 0x00000000  A11     : 0x00000000  A12     : 0x3fcae740  A13     : 0x0000ff00  
+A14     : 0x00ff0000  A15     : 0x3fca1060  SAR     : 0x00000004  EXCCAUSE: 0x0000001c  
+EXCVADDR: 0x00000038  LBEG    : 0x400556d5  LEND    : 0x400556e5  LCOUNT  : 0xffffffff  
+
+
+Backtrace: 0x4206f521:0x3fcae730 0x42066e7f:0x3fcaea50 0x4200afea:0x3fcaeaa0 0x4200ac75:0x3fcaeaf0 0x4200fd42:0x3fcaeb20 0x42010411:0x3fcaeb40 0x42033c99:0x3fcaeb90 0x42036193:0x3fcaebb0 0x4038026d:0x3fcaebe0
+
+
+
+
+ELF file SHA256: 1a51b25a4
+
+Rebooting...
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0xc (RTC_SW_CPU_RST),boot:0x8 (SPI_FAST_FLASH_BOOT)
+Saved PC:0x403759f0
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (31) boot: ESP-IDF v5.3-dirty 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Sep 10 2024 10:14:24[0m
+[0;32mI (31) boot: Multicore bootloader[0m
+[0;32mI (35) boot: chip revision: v0.1[0m
+[0;32mI (38) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (43) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (48) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (53) boot: Enabling RNG early entropy source...[0m
+[0;32mI (58) boot: Partition Table:[0m
+[0;32mI (62) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (69) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (76) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (84) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (91) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=22a70h (141936) map[0m
+[0;32mI (129) esp_image: segment 1: paddr=00032a98 vaddr=3fc98200 size=04078h ( 16504) load[0m
+[0;32mI (133) esp_image: segment 2: paddr=00036b18 vaddr=40374000 size=09500h ( 38144) load[0m
+[0;32mI (144) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=7dde0h (515552) map[0m
+[0;32mI (236) esp_image: segment 4: paddr=000bde08 vaddr=4037d500 size=0acdch ( 44252) load[0m
+[0;32mI (255) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (255) boot: Disabling RNG early entropy source...[0m
+[0;32mI (266) cpu_start: Multicore app[0m
+[0;32mI (276) cpu_start: Pro cpu start user code[0m
+[0;32mI (276) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (277) app_init: Application information:[0m
+[0;32mI (279) app_init: Project name:     gatt_client_demo[0m
+[0;32mI (285) app_init: App version:      v5.3-dirty[0m
+[0;32mI (290) app_init: Compile time:     Sep 10 2024 10:14:12[0m
+[0;32mI (296) app_init: ELF file SHA256:  1a51b25a4...[0m
+[0;32mI (301) app_init: ESP-IDF:          v5.3-dirty[0m
+[0;32mI (307) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (311) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (316) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (321) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (328) heap_init: At 3FCA0338 len 000493D8 (292 KiB): RAM[0m
+[0;32mI (334) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (341) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (347) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (354) spi_flash: detected chip: generic[0m
+[0;32mI (358) spi_flash: flash io: dio[0m
+[0;33mW (362) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (375) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (382) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (389) coexist: coex firmware version: dab85ae96[0m
+[0;32mI (403) coexist: coexist rom version e7ae62f[0m
+[0;32mI (404) main_task: Started on CPU0[0m
+[0;32mI (414) main_task: Calling app_main()[0m
+[0;32mI (434) BLE_INIT: BT controller compile version [ba3b3e3][0m
+[0;32mI (434) BLE_INIT: Bluetooth MAC: 34:85:18:49:28:16[0m
+[0;32mI (434) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (504) GATTC_DEMO: GATTC application register, status 0, app_id 0[0m
+[0;32mI (504) GAPC_DEMO: Scanning start successfully[0m
+[0;32mI (504) main_task: Returned from app_main()[0m
+[0;32mI (514) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (524) GAPC_DEMO: Scan result, device 37:68:ea:5f:79:8e, name len 0[0m
+[0;32mI (534) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (554) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (1524) GAPC_DEMO: Scan result, device 46:4d:70:e6:14:b1, name len 5[0m
+[0;32mI (1524) GATTC_DEMO: NUMZE[0m
+[0;32mI (1524) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (1534) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (1534) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (1544) GATTC_DEMO: 3[0m
+[0;32mI (1544) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (1554) GAPC_DEMO: Scan result, device 52:9f:73:86:04:f8, name len 0[0m
+[0;32mI (2514) GAPC_DEMO: Scan result, device d3:06:1b:9e:75:43, name len 3[0m
+[0;32mI (2514) GATTC_DEMO: X-5[0m
+[0;32mI (2514) GAPC_DEMO: Scan result, device 27:52:9f:99:0b:86, name len 0[0m
+[0;32mI (2514) GAPC_DEMO: Scan result, device 7c:df:8a:fb:2a:03, name len 0[0m
+[0;32mI (2524) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (2534) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (2544) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (2544) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (2554) GATTC_DEMO: 3[0m
+[0;32mI (2554) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (2564) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (2564) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (2574) GAPC_DEMO: Scan result, device 04:08:75:fe:cb:25, name len 0[0m
+[0;32mI (2584) GAPC_DEMO: Scan result, device 62:e9:0f:63:2f:39, name len 0[0m
+[0;32mI (3514) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (3514) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (3514) GATTC_DEMO: 3[0m
+[0;32mI (3524) GAPC_DEMO: Scan result, device 18:20:62:3e:7a:98, name len 0[0m
+[0;32mI (3534) GAPC_DEMO: Scan result, device 69:73:4a:0f:c1:d4, name len 0[0m
+[0;32mI (3544) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (3544) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (3544) GATTC_DEMO: 3[0m
+[0;32mI (4504) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (4504) GAPC_DEMO: Scan result, device 18:84:8b:20:8e:90, name len 0[0m
+[0;32mI (4504) GAPC_DEMO: Scan result, device 78:8e:a6:db:fd:7c, name len 0[0m
+[0;32mI (4524) GAPC_DEMO: Scan result, device 04:08:75:fe:cb:25, name len 0[0m
+[0;32mI (4524) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (4534) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (4534) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (4544) GATTC_DEMO: 3[0m
+[0;32mI (4544) GAPC_DEMO: Scan result, device 6e:c6:86:26:9b:2d, name len 0[0m
+[0;32mI (5524) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (5524) GAPC_DEMO: Scan result, device 55:e3:07:e5:54:54, name len 0[0m
+[0;32mI (5534) GAPC_DEMO: Scan result, device f5:d1:9a:00:ee:f4, name len 17[0m
+[0;32mI (5534) GATTC_DEMO: HUAWEI Mouse CD2[0m
+[0;32mI (5544) GATTC_DEMO: 3[0m
+[0;32mI (5544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (5554) GAPC_DEMO: Scan result, device 6d:93:19:a9:34:69, name len 0[0m
+[0;32mI (5564) GAPC_DEMO: Scan result, device 6a:53:67:52:98:e2, name len 0[0m
+[0;32mI (5564) GAPC_DEMO: Scan result, device 7f:ff:bf:fd:dc:bb, name len 0[0m
+[0;32mI (6524) GAPC_DEMO: Scan result, device 25:21:ee:88:d2:0a, name len 0[0m
+[0;32mI (6544) GAPC_DEMO: Scan result, device 43:1a:97:23:b4:6f, name len 0[0m
+[0;32mI (6544) GAPC_DEMO: Scan result, device e4:52:1e:23:32:46, name len 0[0m
+[0;32mI (6544) GAPC_DEMO: Scan result, device 01:88:5e:e8:24:de, name len 0[0m

@@ -1,0 +1,54 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/cu.usbserial-10 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x4206f524: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+[0m
+[0;33m0x400556d5: strlen in ROM
+0x400556e5: strlen in ROM
+[0m
+[0;33m0x4206f521: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+0x42066e7f: printf at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/printf.c:56
+0x4200afea: gattc_profile_event_handler at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:215
+0x4200ac75: esp_gattc_cb at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:498
+0x4200fd42: btc_gattc_cb_to_app at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:26
+0x42010411: btc_gattc_cb_handler at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:857
+0x42033c99: btc_thread_handler at /Users/memduh/esp/esp-idf/components/bt/common/btc/core/btc_task.c:277
+0x42036193: osi_thread_run at /Users/memduh/esp/esp-idf/components/bt/common/osi/thread.c:165
+0x4038026d: vPortTaskWrapper at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x403759f0: esp_restart_noos at /Users/memduh/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:158
+[0m
+[0;33m0x4206f524: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+[0m
+[0;33m0x400556d5: strlen in ROM
+0x400556e5: strlen in ROM
+[0m
+[0;33m0x4206f521: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+0x42066e7f: printf at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/printf.c:56
+0x4200afea: gattc_profile_event_handler at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:215
+0x4200ac75: esp_gattc_cb at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:498
+0x4200fd42: btc_gattc_cb_to_app at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:26
+0x42010411: btc_gattc_cb_handler at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:857
+0x42033c99: btc_thread_handler at /Users/memduh/esp/esp-idf/components/bt/common/btc/core/btc_task.c:277
+0x42036193: osi_thread_run at /Users/memduh/esp/esp-idf/components/bt/common/osi/thread.c:165
+0x4038026d: vPortTaskWrapper at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x403759f0: esp_restart_noos at /Users/memduh/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:158
+[0m
+[0;33m0x4206f524: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+[0m
+[0;33m0x400556d5: strlen in ROM
+0x400556e5: strlen in ROM
+[0m
+[0;33m0x4206f521: _vfprintf_r at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/vfprintf.c:911
+0x42066e7f: printf at /Users/brnomac003/.gitlab-runner/builds/qR2TxTby/0/idf/crosstool-NG/.build/xtensa-esp-elf/src/newlib/newlib/libc/stdio/printf.c:56
+0x4200afea: gattc_profile_event_handler at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:215
+0x4200ac75: esp_gattc_cb at /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main/gattc_demo.c:498
+0x4200fd42: btc_gattc_cb_to_app at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:26
+0x42010411: btc_gattc_cb_handler at /Users/memduh/esp/esp-idf/components/bt/host/bluedroid/btc/profile/std/gatt/btc_gattc.c:857
+0x42033c99: btc_thread_handler at /Users/memduh/esp/esp-idf/components/bt/common/btc/core/btc_task.c:277
+0x42036193: osi_thread_run at /Users/memduh/esp/esp-idf/components/bt/common/osi/thread.c:165
+0x4038026d: vPortTaskWrapper at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x403759f0: esp_restart_noos at /Users/memduh/esp/esp-idf/components/esp_system/port/soc/esp32s3/system_internal.c:158
+[0m
+[0m
