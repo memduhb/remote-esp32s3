@@ -481,11 +481,6 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
             } else {
                 ESP_LOGE(GATTC_TAG, "Encryption failed, reason: %d", param->ble_security.auth_cmpl.fail_reason);
 
-                // Clear previous bond information to retry pairing and encryption
-                esp_err_t remove_bond_status = esp_ble_remove_bond_device(bd_addr);
-                if (remove_bond_status == ESP_OK) {
-                    ESP_LOGI(GATTC_TAG, "Previous bond information cleared. Retrying encryption...");
-
                     // Retry setting encryption
                     esp_err_t enc_status = esp_ble_set_encryption(bd_addr, ESP_BLE_SEC_ENCRYPT_MITM);
                     if (enc_status != ESP_OK) {
