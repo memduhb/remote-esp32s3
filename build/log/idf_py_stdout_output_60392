@@ -1,0 +1,316 @@
+[0;32mI (232) esp_image: segment 4: paddr=000be0d0 vaddr=4037d440 size=0ad9ch ( 44444) load[0m
+ESP-ROM:esp32s3-20210327
+Build:Mar 27 2021
+rst:0x1 (POWERON),boot:0x8 (SPI_FAST_FLASH_BOOT)
+SPIWP:0xee
+mode:DIO, clock div:1
+load:0x3fce2810,len:0x178c
+load:0x403c8700,len:0x4
+load:0x403c8704,len:0xcb8
+load:0x403cb700,len:0x2db0
+entry 0x403c8914
+[0;32mI (27) boot: ESP-IDF v5.3-dirty 2nd stage bootloader[0m
+[0;32mI (27) boot: compile time Sep 12 2024 10:49:48[0m
+[0;32mI (27) boot: Multicore bootloader[0m
+[0;32mI (30) boot: chip revision: v0.1[0m
+[0;32mI (34) boot.esp32s3: Boot SPI Speed : 80MHz[0m
+[0;32mI (39) boot.esp32s3: SPI Mode       : DIO[0m
+[0;32mI (44) boot.esp32s3: SPI Flash Size : 2MB[0m
+[0;32mI (48) boot: Enabling RNG early entropy source...[0m
+[0;32mI (54) boot: Partition Table:[0m
+[0;32mI (57) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (65) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (72) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (79) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (87) boot: End of partition table[0m
+[0;32mI (91) esp_image: segment 0: paddr=00010020 vaddr=3c080020 size=22b20h (142112) map[0m
+[0;32mI (125) esp_image: segment 1: paddr=00032b48 vaddr=3fc98200 size=04088h ( 16520) load[0m
+[0;32mI (129) esp_image: segment 2: paddr=00036bd8 vaddr=40374000 size=09440h ( 37952) load[0m
+[0;32mI (139) esp_image: segment 3: paddr=00040020 vaddr=42000020 size=7e0a8h (516264) map[0m
+[0;32mI (232) esp_image: segment 4: paddr=000be0d0 vaddr=4037d440 size=0ad9ch ( 44444) load[0m
+[0;32mI (250) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (251) boot: Disabling RNG early entropy source...[0m
+[0;32mI (262) cpu_start: Multicore app[0m
+[0;32mI (272) cpu_start: Pro cpu start user code[0m
+[0;32mI (272) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (272) app_init: Application information:[0m
+[0;32mI (275) app_init: Project name:     gatt_client_demo[0m
+[0;32mI (281) app_init: App version:      29d9b65-dirty[0m
+[0;32mI (286) app_init: Compile time:     Sep 12 2024 10:49:36[0m
+[0;32mI (292) app_init: ELF file SHA256:  1b811abf4...[0m
+[0;32mI (297) app_init: ESP-IDF:          v5.3-dirty[0m
+[0;32mI (303) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (307) efuse_init: Max chip rev:     v0.99 [0m
+[0;32mI (312) efuse_init: Chip rev:         v0.1[0m
+[0;32mI (317) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (324) heap_init: At 3FCA0368 len 000493A8 (292 KiB): RAM[0m
+[0;32mI (330) heap_init: At 3FCE9710 len 00005724 (21 KiB): RAM[0m
+[0;32mI (336) heap_init: At 3FCF0000 len 00008000 (32 KiB): DRAM[0m
+[0;32mI (343) heap_init: At 600FE100 len 00001EE8 (7 KiB): RTCRAM[0m
+[0;32mI (350) spi_flash: detected chip: generic[0m
+[0;32mI (354) spi_flash: flash io: dio[0m
+[0;33mW (358) spi_flash: Detected size(8192k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (371) sleep: Configure to isolate all GPIO pins in sleep state[0m
+[0;32mI (378) sleep: Enable automatic switching of GPIO sleep configuration[0m
+[0;32mI (385) coexist: coex firmware version: dab85ae96[0m
+[0;32mI (399) coexist: coexist rom version e7ae62f[0m
+[0;32mI (400) main_task: Started on CPU0[0m
+[0;32mI (410) main_task: Calling app_main()[0m
+[0;32mI (430) BLE_INIT: BT controller compile version [ba3b3e3][0m
+[0;32mI (430) BLE_INIT: Bluetooth MAC: 34:85:18:49:28:16[0m
+[0;32mI (430) phy_init: phy_version 680,a6008b2,Jun  4 2024,16:41:10[0m
+[0;32mI (490) GATTC_DEMO: GATTC application register, status 0, app_id 0[0m
+[0;32mI (500) GAPC_DEMO: Scanning start successfully[0m
+[0;32mI (500) main_task: Returned from app_main()[0m
+[0;32mI (500) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (510) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (510) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (520) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (530) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (1500) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (1510) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (1510) GAPC_DEMO: Scan result, device 22:6e:c0:5e:cf:b2, name len 0[0m
+[0;32mI (1510) GAPC_DEMO: Scan result, device 35:e5:fe:d7:4f:63, name len 0[0m
+[0;32mI (1520) GAPC_DEMO: Scan result, device 1e:2f:44:70:1c:1c, name len 0[0m
+[0;32mI (1530) GAPC_DEMO: Scan result, device 0f:5a:77:61:c5:80, name len 0[0m
+[0;32mI (1530) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (1540) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (1550) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (1550) GAPC_DEMO: Scan result, device 53:2a:51:44:21:55, name len 0[0m
+[0;32mI (1560) GAPC_DEMO: Scan result, device 5e:ff:52:ac:5f:d8, name len 0[0m
+[0;32mI (1570) GAPC_DEMO: Scan result, device 77:02:37:07:3b:49, name len 0[0m
+[0;32mI (2500) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (2500) GAPC_DEMO: Scan result, device 19:f6:ce:d9:3e:e4, name len 0[0m
+[0;32mI (2510) GAPC_DEMO: Scan result, device 77:3d:cd:4a:8b:5c, name len 0[0m
+[0;32mI (2520) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (2520) GAPC_DEMO: Scan result, device 4f:5d:e1:50:80:54, name len 0[0m
+[0;32mI (2530) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (2530) GAPC_DEMO: Scan result, device 77:cd:bb:e6:0b:ce, name len 0[0m
+[0;32mI (2540) GAPC_DEMO: Scan result, device 66:c4:c4:51:35:36, name len 0[0m
+[0;32mI (2550) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 18[0m
+[0;32mI (2550) GATTC_DEMO: Sd604364a06cc0b9[0m
+[0;32mI (2560) GATTC_DEMO: cC[0m
+[0;32mI (3500) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (3500) GAPC_DEMO: Scan result, device c2:4d:b8:77:f4:8b, name len 0[0m
+[0;32mI (3510) GAPC_DEMO: Scan result, device 4e:ea:2d:9b:e1:1e, name len 0[0m
+[0;32mI (3520) GAPC_DEMO: Scan result, device 0f:5a:77:61:c5:80, name len 0[0m
+[0;32mI (3530) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 18[0m
+[0;32mI (3530) GATTC_DEMO: Sd604364a06cc0b9[0m
+[0;32mI (3530) GATTC_DEMO: cC[0m
+[0;32mI (3530) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (3540) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (4500) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (4500) GAPC_DEMO: Scan result, device 43:3f:f1:69:ef:28, name len 0[0m
+[0;32mI (4500) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (4510) GAPC_DEMO: Scan result, device 1c:51:b3:23:ff:4e, name len 0[0m
+[0;32mI (4520) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (4520) GAPC_DEMO: Scan result, device 77:cd:bb:e6:0b:ce, name len 0[0m
+[0;32mI (4530) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (4540) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (4550) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (4550) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (4560) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (4560) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (5500) GAPC_DEMO: Scan result, device 1f:e8:04:e2:5e:fa, name len 0[0m
+[0;32mI (5510) GAPC_DEMO: Scan result, device 35:e5:fe:d7:4f:63, name len 0[0m
+[0;32mI (5510) GAPC_DEMO: Scan result, device 0f:5a:77:61:c5:80, name len 0[0m
+[0;32mI (5530) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (5530) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (6500) GAPC_DEMO: Scan result, device ce:07:65:da:9d:f4, name len 0[0m
+[0;32mI (6510) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (6520) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (6520) GAPC_DEMO: Scan result, device 62:ae:30:47:a8:3c, name len 0[0m
+[0;32mI (6540) GAPC_DEMO: Scan result, device 43:3f:f1:69:ef:28, name len 0[0m
+[0;32mI (6540) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (6540) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (7500) GAPC_DEMO: Scan result, device 74:54:2d:da:93:f7, name len 0[0m
+[0;32mI (7500) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (7500) GAPC_DEMO: Scan result, device 1e:2f:44:70:1c:1c, name len 0[0m
+[0;32mI (7510) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (7530) GAPC_DEMO: Scan result, device 66:c4:c4:51:35:36, name len 0[0m
+[0;32mI (7530) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (7530) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (7540) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (7540) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (8520) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (8520) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (8520) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (8530) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (8540) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (8540) GAPC_DEMO: Scan result, device 35:e5:fe:d7:4f:63, name len 0[0m
+[0;32mI (8550) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (9500) GAPC_DEMO: Scan result, device 13:2c:02:32:e0:a3, name len 0[0m
+[0;32mI (9500) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (9510) GAPC_DEMO: Scan result, device 44:71:2a:b6:97:38, name len 0[0m
+[0;32mI (9520) GAPC_DEMO: Scan result, device 62:ae:30:47:a8:3c, name len 0[0m
+[0;32mI (9530) GAPC_DEMO: Scan result, device 53:2a:51:44:21:55, name len 0[0m
+[0;32mI (9530) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 18[0m
+[0;32mI (9540) GATTC_DEMO: Sd604364a06cc0b9[0m
+[0;32mI (9540) GATTC_DEMO: cC[0m
+[0;32mI (10500) GAPC_DEMO: Scan result, device 7d:48:c5:4a:08:ba, name len 0[0m
+[0;32mI (10500) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (10500) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (10510) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (10520) GAPC_DEMO: Scan result, device 14:b3:8f:4a:b5:79, name len 0[0m
+[0;32mI (10520) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (10530) GAPC_DEMO: Scan result, device 4f:5d:e1:50:80:54, name len 0[0m
+[0;32mI (10540) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (10540) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (10550) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (10560) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (10570) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (10570) GAPC_DEMO: Scan result, device 77:3d:cd:4a:8b:5c, name len 0[0m
+[0;32mI (11500) GAPC_DEMO: Scan result, device 4e:ea:2d:9b:e1:1e, name len 0[0m
+[0;32mI (11520) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (11520) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (11530) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (12500) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (12500) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (12510) GAPC_DEMO: Scan result, device 77:cd:bb:e6:0b:ce, name len 0[0m
+[0;32mI (12520) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (12530) GAPC_DEMO: Scan result, device 4b:53:ce:27:74:34, name len 0[0m
+[0;32mI (12530) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (12530) GAPC_DEMO: Scan result, device 44:71:2a:b6:97:38, name len 0[0m
+[0;32mI (12540) GAPC_DEMO: Scan result, device 5e:ff:52:ac:5f:d8, name len 0[0m
+[0;32mI (12540) GAPC_DEMO: Scan result, device 53:2a:51:44:21:55, name len 0[0m
+[0;32mI (13500) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (13500) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (13500) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (13530) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (13530) GAPC_DEMO: Scan result, device 77:02:37:07:3b:49, name len 0[0m
+[0;32mI (13540) GAPC_DEMO: Scan result, device 4f:5d:e1:50:80:54, name len 0[0m
+[0;32mI (13540) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (14490) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (14510) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (14510) GAPC_DEMO: Scan result, device 0f:5a:77:61:c5:80, name len 0[0m
+[0;32mI (14510) GAPC_DEMO: Scan result, device 1f:e8:04:e2:5e:fa, name len 0[0m
+[0;32mI (14520) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (14530) GAPC_DEMO: Scan result, device ce:07:65:da:9d:f4, name len 0[0m
+[0;32mI (15500) GAPC_DEMO: Scan result, device 51:39:d2:d7:6d:6c, name len 0[0m
+[0;32mI (15500) GAPC_DEMO: Scan result, device 39:37:f7:a9:66:bb, name len 0[0m
+[0;32mI (15510) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (15520) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (15530) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (15530) GAPC_DEMO: Scan result, device 4b:53:ce:27:74:34, name len 0[0m
+[0;32mI (16500) GAPC_DEMO: Scan result, device 77:cd:bb:e6:0b:ce, name len 0[0m
+[0;32mI (16500) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (16510) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (16520) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (16530) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (16530) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (16530) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (17490) GAPC_DEMO: Scan result, device 77:02:37:07:3b:49, name len 0[0m
+[0;32mI (17510) GAPC_DEMO: Scan result, device 53:2a:51:44:21:55, name len 0[0m
+[0;32mI (17510) GAPC_DEMO: Scan result, device 44:71:2a:b6:97:38, name len 0[0m
+[0;32mI (17520) GAPC_DEMO: Scan result, device 01:16:6f:5d:55:14, name len 0[0m
+[0;32mI (17530) GAPC_DEMO: Scan result, device 61:01:3b:01:6d:bd, name len 0[0m
+[0;32mI (17530) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (17540) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (17540) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 18[0m
+[0;32mI (17550) GATTC_DEMO: Sd604364a06cc0b9[0m
+[0;32mI (17550) GATTC_DEMO: cC[0m
+[0;32mI (18500) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (18500) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (18520) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (18520) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (18530) GAPC_DEMO: Scan result, device 77:3d:cd:4a:8b:5c, name len 0[0m
+[0;32mI (18530) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (18540) GAPC_DEMO: Scan result, device 1f:2c:6b:ca:24:8b, name len 0[0m
+[0;32mI (19490) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (19500) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (19500) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (19510) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (19510) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (19520) GAPC_DEMO: Scan result, device 43:3f:f1:69:ef:28, name len 0[0m
+[0;32mI (19530) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (19530) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (19540) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (19550) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (19550) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (20490) GAPC_DEMO: Scan result, device 5e:ff:52:ac:5f:d8, name len 0[0m
+[0;32mI (20490) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (20490) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (20500) GAPC_DEMO: Scan result, device 35:e5:fe:d7:4f:63, name len 0[0m
+[0;32mI (20510) GAPC_DEMO: Scan result, device db:40:87:7d:72:ab, name len 0[0m
+[0;32mI (20510) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (20520) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (20530) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (20530) GAPC_DEMO: Scan result, device 4b:53:ce:27:74:34, name len 0[0m
+[0;32mI (20540) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (20550) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (20560) GAPC_DEMO: Scan result, device 53:2a:51:44:21:55, name len 0[0m
+[0;32mI (20560) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (20570) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (20570) GAPC_DEMO: Scan result, device 63:6a:88:11:b6:cf, name len 0[0m
+[0;32mI (20580) GAPC_DEMO: Scan result, device 39:37:f7:a9:66:bb, name len 0[0m
+[0;32mI (21500) GAPC_DEMO: Scan result, device 4f:5d:e1:50:80:54, name len 0[0m
+[0;32mI (21520) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (21520) GAPC_DEMO: Scan result, device 22:6e:c0:5e:cf:b2, name len 0[0m
+[0;32mI (21530) GAPC_DEMO: Scan result, device 66:c4:c4:51:35:36, name len 0[0m
+[0;32mI (22490) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (22490) GAPC_DEMO: Scan result, device db:40:87:7d:72:ab, name len 0[0m
+[0;32mI (22490) GAPC_DEMO: Scan result, device 43:3f:f1:69:ef:28, name len 0[0m
+[0;32mI (22500) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (22510) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (22510) GAPC_DEMO: Scan result, device 7f:e4:e2:9a:55:c4, name len 0[0m
+[0;32mI (22520) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (22520) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (22530) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (22540) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (23490) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (23490) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (23490) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (23500) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (23500) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (23510) GAPC_DEMO: Scan result, device 13:b0:69:77:aa:13, name len 0[0m
+[0;32mI (23520) GAPC_DEMO: Scan result, device 77:cd:bb:e6:0b:ce, name len 0[0m
+[0;32mI (23520) GAPC_DEMO: Scan result, device 6d:f4:0b:73:b6:81, name len 0[0m
+[0;32mI (24490) GAPC_DEMO: Scan result, device 4b:53:ce:27:74:34, name len 0[0m
+[0;32mI (24490) GAPC_DEMO: Scan result, device 14:a5:79:de:b4:d9, name len 0[0m
+[0;32mI (24510) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (24510) GAPC_DEMO: Scan result, device 1c:51:b3:23:ff:4e, name len 0[0m
+[0;32mI (24510) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (24530) GAPC_DEMO: Scan result, device 4f:5d:e1:50:80:54, name len 0[0m
+[0;32mI (24530) GAPC_DEMO: Scan result, device 43:3f:f1:69:ef:28, name len 0[0m
+[0;32mI (25490) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (25490) GAPC_DEMO: Scan result, device 7e:2a:84:40:16:6c, name len 0[0m
+[0;32mI (25500) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (25500) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (25510) GAPC_DEMO: Scan result, device 4e:ea:2d:9b:e1:1e, name len 0[0m
+[0;32mI (25520) GAPC_DEMO: Scan result, device 44:71:2a:b6:97:38, name len 0[0m
+[0;32mI (25520) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (26490) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (26490) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (26490) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
+[0;32mI (26510) GAPC_DEMO: Scan result, device 77:3d:cd:4a:8b:5c, name len 0[0m
+[0;32mI (26510) GAPC_DEMO: Scan result, device 24:06:e2:ed:4e:47, name len 0[0m
+[0;32mI (26520) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (26520) GAPC_DEMO: Scan result, device 13:b0:69:77:aa:13, name len 0[0m
+[0;32mI (26530) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (26540) GAPC_DEMO: Scan result, device 5e:ff:52:ac:5f:d8, name len 0[0m
+[0;32mI (27500) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 18[0m
+[0;32mI (27500) GATTC_DEMO: Sd604364a06cc0b9[0m
+[0;32mI (27500) GATTC_DEMO: cC[0m
+[0;32mI (27500) GAPC_DEMO: Scan result, device c2:4d:b8:77:f4:8b, name len 0[0m
+[0;32mI (27530) GAPC_DEMO: Scan result, device 62:ae:30:47:a8:3c, name len 0[0m
+[0;32mI (28490) GAPC_DEMO: Scan result, device 66:64:4e:de:37:24, name len 0[0m
+[0;32mI (28490) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (28500) GAPC_DEMO: Scan result, device 5c:d2:8e:7a:d6:2f, name len 0[0m
+[0;32mI (28500) GAPC_DEMO: Scan result, device 6c:3a:75:85:b5:98, name len 0[0m
+[0;32mI (28510) GAPC_DEMO: Scan result, device e0:46:e5:16:89:d9, name len 14[0m
+[0;32mI (28510) GATTC_DEMO: FYA+0609162424[0m
+[0;32mI (28520) GAPC_DEMO: Scan result, device 4b:35:24:4d:01:1f, name len 0[0m
+[0;32mI (28520) GAPC_DEMO: Scan result, device 39:37:f7:a9:66:bb, name len 0[0m
+[0;32mI (28530) GAPC_DEMO: Scan result, device 4e:ea:2d:9b:e1:1e, name len 0[0m
+[0;32mI (28540) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (28550) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (28550) GAPC_DEMO: Scan result, device fc:c0:8b:32:89:df, name len 0[0m
+[0;32mI (29480) GAPC_DEMO: Scan result, device 39:d1:00:00:ea:d1, name len 0[0m
+[0;32mI (29490) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (29510) GAPC_DEMO: Scan result, device 41:b8:ed:1c:30:b1, name len 0[0m
+[0;32mI (29510) GAPC_DEMO: Scan result, device 74:46:b3:8a:f3:36, name len 0[0m
+[0;32mI (29520) GAPC_DEMO: Scan result, device 66:c4:c4:51:35:36, name len 0[0m
+[0;32mI (29520) GAPC_DEMO: Scan result, device 60:4f:22:ec:7d:76, name len 0[0m
+[0;32mI (29530) GAPC_DEMO: Scan result, device 35:ae:ec:29:fb:e5, name len 0[0m
+[0;32mI (30490) GAPC_DEMO: Scan result, device c6:bb:dd:9b:e8:2c, name len 0[0m
+[0;32mI (30490) GAPC_DEMO: Scan result, device 70:02:c1:f7:ec:fb, name len 0[0m
