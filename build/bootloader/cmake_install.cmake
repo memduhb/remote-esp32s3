@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader/esp-idf/cmake_install.cmake")
+  include("/Users/memduh/Downloads/gatt-security-client-2/build/bootloader/esp-idf/cmake_install.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -57,6 +57,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

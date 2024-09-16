@@ -10,6 +10,9 @@
         "ratio": "c",
         "system_error": "c",
         "tuple": "c",
-        "vector": "c"
+        "vector": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }

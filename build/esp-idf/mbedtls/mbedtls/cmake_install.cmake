@@ -39,10 +39,10 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
-  include("/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
-  include("/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
-  include("/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
+  include("/Users/memduh/Downloads/gatt-security-client-2/build/esp-idf/mbedtls/mbedtls/include/cmake_install.cmake")
+  include("/Users/memduh/Downloads/gatt-security-client-2/build/esp-idf/mbedtls/mbedtls/3rdparty/cmake_install.cmake")
+  include("/Users/memduh/Downloads/gatt-security-client-2/build/esp-idf/mbedtls/mbedtls/library/cmake_install.cmake")
+  include("/Users/memduh/Downloads/gatt-security-client-2/build/esp-idf/mbedtls/mbedtls/pkgconfig/cmake_install.cmake")
 
 endif()
 

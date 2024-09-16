@@ -21,6 +21,11 @@
 #include <stdio.h>
 #include "nvs.h"
 #include "nvs_flash.h"
+#include "led_control.h"
+#include "freertos/semphr.h"
+
+
+
 
 #include "esp_bt.h"
 #include "esp_gap_ble_api.h"
@@ -30,7 +35,10 @@
 #include "esp_gatt_common_api.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
+#include "esp_hidh.h"
+#include "esp_bt_device.h"
 
+esp_gattc_char_elem_t hid_char_result;
 #define GATTC_TAG "GATTC_DEMO"
 #define GAPC_TAG  "GAPC_DEMO"
 #define GATTC_AUTH "GATTC_AUTH"
@@ -42,58 +50,75 @@
 #define ADV_NAME_MAX_LEN 32
 #define UUID_STR_LEN 37 
 
-static const char* uuid_to_str(esp_bt_uuid_t uuid)
-{
-    static char uuid_str[UUID_STR_LEN];
+esp_event_loop_handle_t hidh_task_handle; // hidh_callback handle
+QueueHandle_t command_queue;
+remote_command_t command;
 
-    if (uuid.len == ESP_UUID_LEN_16) {
-        // Format 16-bit UUID
-        snprintf(uuid_str, sizeof(uuid_str), "%04x", uuid.uuid.uuid16);
-    } else if (uuid.len == ESP_UUID_LEN_128) {
-        // Format 128-bit UUID
-        snprintf(uuid_str, sizeof(uuid_str),
-                 "%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
-                 uuid.uuid.uuid128[15], uuid.uuid.uuid128[14],
-                 uuid.uuid.uuid128[13], uuid.uuid.uuid128[12],
-                 uuid.uuid.uuid128[11], uuid.uuid.uuid128[10],
-                 uuid.uuid.uuid128[9], uuid.uuid.uuid128[8],
-                 uuid.uuid.uuid128[7], uuid.uuid.uuid128[6],
-                 uuid.uuid.uuid128[5], uuid.uuid.uuid128[4],
-                 uuid.uuid.uuid128[3], uuid.uuid.uuid128[2],
-                 uuid.uuid.uuid128[1], uuid.uuid.uuid128[0]);
-    } else {
-        // Handle unknown UUID length
-        snprintf(uuid_str, sizeof(uuid_str), "Unknown UUID length");
-    }
 
-    return uuid_str;
-}
 
-static char remote_device_name[ADV_NAME_MAX_LEN] = "ruwido BLE";
+
+static char remote_device_name[ADV_NAME_MAX_LEN] = "Silverline RCU";
 static bool connect    = false;
 static bool get_server = false;
-static esp_gattc_char_elem_t char_elem_result;
-static esp_gattc_descr_elem_t *descr_elem_result = NULL;
+esp_gattc_char_elem_t char_elem_result;
+esp_gattc_descr_elem_t *descr_elem_result = NULL;
 
 /* Declare static functions */
 static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param);
 static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param);
 static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param);
 
-// static const uint8_t REMOTE_SERVICE_UUID[ESP_UUID_LEN_128] = {
-//     0x64, 0xB6, 0x17, 0xF6, 0x01, 0xAF, 0x7D, 0xBC, 
-//     0x05, 0x4F, 0x21, 0x5A, 0x01, 0x00, 0x5E, 0xAB
-// };
-// static const uint8_t REMOTE_CHARACTERISTIC_UUID[ESP_UUID_LEN_128] = {
-//     0x64, 0xB6, 0x17, 0xF6, 0x01, 0xAF, 0x7D, 0xBC, 
-//     0x05, 0x4F, 0x21, 0x5A, 0x04, 0x00, 0x5E, 0xAB 
-// };
+// Declare a mutex to protect access to the queue
+static SemaphoreHandle_t queue_mutex;
+void print_queue_contents(void) {
+    if (queue_mutex == NULL) {
+        queue_mutex = xSemaphoreCreateMutex();  // Create the mutex if it hasn't been created
+    }
 
-/*
-static const uint8_t NOTIFY_DESCRIPTOR_UUID[ESP_UUID_LEN_128] = {
-    0x02, 0x29, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 
-};*/
+    // Lock the mutex to ensure exclusive access to the queue
+    if (xSemaphoreTake(queue_mutex, portMAX_DELAY) == pdTRUE) {
+        remote_command_t command;
+        int i = 0;
+        int queue_size = uxQueueMessagesWaiting(command_queue); // Get the current number of messages in the queue
+
+        ESP_LOGI(GATTC_TAG, "Current Queue Contents:");
+        for (i = 0; i < queue_size; i++) {
+            // Peek at the queue to get the command without removing it
+            if (xQueuePeek(command_queue, &command, 0) == pdPASS) {
+                // Print the current command
+                switch (command) {
+                    case COMMAND_ON:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: COMMAND_ON", i);
+                        break;
+                    case COMMAND_TOGGLE_COLOR:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: COMMAND_TOGGLE", i);
+                        break;
+                    case COMMAND_BRIGHTNESS_UP:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: COMMAND_INCREASE", i);
+                        break;
+                    case COMMAND_BRIGHTNESS_DOWN:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: COMMAND_DECREASE", i);
+                        break;
+                    case COMMAND_OFF:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: COMMAND_OFF", i);
+                        break;
+                    default:
+                        ESP_LOGI(GATTC_TAG, "Command [%d]: Unknown", i);
+                        break;
+                }
+                // Remove the item from the queue
+                xQueueReceive(command_queue, &command, 0);
+                // Add it back to the queue to preserve the order
+                xQueueSend(command_queue, &command, 0);
+            }
+        }
+        xSemaphoreGive(queue_mutex);  // Release the mutex after printing
+    } else {
+        ESP_LOGE(GATTC_TAG, "Failed to take mutex to print queue contents");
+    }
+}
+
+
 static esp_bt_uuid_t hid_filter_service_uuid = {
     .len = ESP_UUID_LEN_16,
     .uuid={
@@ -101,46 +126,33 @@ static esp_bt_uuid_t hid_filter_service_uuid = {
         }
 };
 
-// static esp_bt_uuid_t remote_filter_service_uuid = {
-//     .len = ESP_UUID_LEN_128,
-//     .uuid.uuid128 = {
-//         REMOTE_SERVICE_UUID[0], REMOTE_SERVICE_UUID[1], REMOTE_SERVICE_UUID[2], REMOTE_SERVICE_UUID[3],
-//         REMOTE_SERVICE_UUID[4], REMOTE_SERVICE_UUID[5], REMOTE_SERVICE_UUID[6], REMOTE_SERVICE_UUID[7],
-//         REMOTE_SERVICE_UUID[8], REMOTE_SERVICE_UUID[9], REMOTE_SERVICE_UUID[10], REMOTE_SERVICE_UUID[11],
-//         REMOTE_SERVICE_UUID[12], REMOTE_SERVICE_UUID[13], REMOTE_SERVICE_UUID[14], REMOTE_SERVICE_UUID[15]
-//     }// Use the 128-bit UUID here
-// };
-// static esp_bt_uuid_t remote_filter_char_uuid = {
-//     .len = ESP_UUID_LEN_128,
-//     .uuid.uuid128 = {
-//         REMOTE_CHARACTERISTIC_UUID[0], REMOTE_CHARACTERISTIC_UUID[1], REMOTE_CHARACTERISTIC_UUID[2], REMOTE_CHARACTERISTIC_UUID[3],
-//         REMOTE_CHARACTERISTIC_UUID[4], REMOTE_CHARACTERISTIC_UUID[5], REMOTE_CHARACTERISTIC_UUID[6], REMOTE_CHARACTERISTIC_UUID[7],
-//         REMOTE_CHARACTERISTIC_UUID[8], REMOTE_CHARACTERISTIC_UUID[9], REMOTE_CHARACTERISTIC_UUID[10], REMOTE_CHARACTERISTIC_UUID[11],
-//         REMOTE_CHARACTERISTIC_UUID[12], REMOTE_CHARACTERISTIC_UUID[13], REMOTE_CHARACTERISTIC_UUID[14], REMOTE_CHARACTERISTIC_UUID[15]
-//     }
-// };
-static esp_bt_uuid_t remote_filter_char_uuid = {
-    .len = ESP_UUID_LEN_16,
-    .uuid={
-        .uuid16 = ESP_GATT_UUID_HID_REPORT,
-        }
-};
-/*
-static esp_bt_uuid_t notify_descr_uuid = {
-    .len = ESP_UUID_LEN_128,
-    .uuid.uuid128 = {
-        NOTIFY_DESCRIPTOR_UUID[0], NOTIFY_DESCRIPTOR_UUID[1], NOTIFY_DESCRIPTOR_UUID[2], NOTIFY_DESCRIPTOR_UUID[3],
-        NOTIFY_DESCRIPTOR_UUID[4], NOTIFY_DESCRIPTOR_UUID[5], NOTIFY_DESCRIPTOR_UUID[6], NOTIFY_DESCRIPTOR_UUID[7],
-        NOTIFY_DESCRIPTOR_UUID[8], NOTIFY_DESCRIPTOR_UUID[9], NOTIFY_DESCRIPTOR_UUID[10], NOTIFY_DESCRIPTOR_UUID[11],
-        NOTIFY_DESCRIPTOR_UUID[12], NOTIFY_DESCRIPTOR_UUID[13], NOTIFY_DESCRIPTOR_UUID[14], NOTIFY_DESCRIPTOR_UUID[15]
-    }
-};
+esp_bt_uuid_t hid_char_uuid[4] = {
+	{
+		.len = ESP_UUID_LEN_16,
+		.uuid = {
+			.uuid16 = ESP_GATT_UUID_HID_INFORMATION,
+		},
+	},
+	{
+		.len = ESP_UUID_LEN_16,
+		.uuid = {
+			.uuid16 = ESP_GATT_UUID_HID_REPORT_MAP,
+		},
+	},
+	{
+		.len = ESP_UUID_LEN_16,
+		.uuid = {
+			.uuid16 = ESP_GATT_UUID_HID_CONTROL_POINT,
+		},
+	},
+	{
+		.len = ESP_UUID_LEN_16,
+		.uuid = {
+			.uuid16 = ESP_GATT_UUID_HID_REPORT,
+		},
+	},
 
-
-static esp_bt_uuid_t remote_filter_char_uuid = {
-    .len = ESP_UUID_LEN_16,
-    .uuid = {.uuid16 = REMOTE_NOTIFY_CHAR_UUID,},
-};*/
+};
 
 static esp_bt_uuid_t notify_descr_uuid = {
     .len = ESP_UUID_LEN_16,
@@ -190,12 +202,6 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
     case ESP_GATTC_CONNECT_EVT:{
         ESP_LOGI(GATTC_TAG, "Connected, conn_id %d, remote "ESP_BD_ADDR_STR"", p_data->connect.conn_id,
                  ESP_BD_ADDR_HEX(p_data->connect.remote_bda));
-        gl_profile_tab[PROFILE_A_APP_ID].conn_id = p_data->connect.conn_id;
-        memcpy(gl_profile_tab[PROFILE_A_APP_ID].remote_bda, p_data->connect.remote_bda, sizeof(esp_bd_addr_t));
-        esp_err_t mtu_ret = esp_ble_gattc_send_mtu_req (gattc_if, p_data->connect.conn_id);
-        if (mtu_ret){
-            ESP_LOGE(GATTC_TAG, "Config MTU error, error code = %x", mtu_ret);
-        }
         break;
     }
     case ESP_GATTC_OPEN_EVT:
@@ -204,6 +210,14 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
             break;
         }
         ESP_LOGI(GATTC_TAG, "Open successfully, mtu %u", p_data->open.mtu);
+        gl_profile_tab[PROFILE_A_APP_ID].conn_id = p_data->open.conn_id;
+        memcpy(gl_profile_tab[PROFILE_A_APP_ID].remote_bda, p_data->open.remote_bda, sizeof(esp_bd_addr_t));
+        esp_err_t mtu_ret = esp_ble_gattc_send_mtu_req (gattc_if, p_data->open.conn_id);
+        if (mtu_ret){
+            ESP_LOGE(GATTC_TAG, "Config MTU error, error code = %x", mtu_ret);
+        }
+        esp_ble_set_encryption(gl_profile_tab[PROFILE_A_APP_ID].remote_bda, ESP_BLE_SEC_ENCRYPT_MITM);
+
         break;
     case ESP_GATTC_DIS_SRVC_CMPL_EVT:
         if (param->dis_srvc_cmpl.status != ESP_GATT_OK){
@@ -211,10 +225,11 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
             break;
         }
         ESP_LOGI(GATTC_TAG, "Service discover complete, conn_id %d", param->dis_srvc_cmpl.conn_id);
-        esp_ble_gattc_search_service(gattc_if, param->dis_srvc_cmpl.conn_id, &hid_filter_service_uuid);
+        //esp_ble_gattc_search_service(gattc_if, param->dis_srvc_cmpl.conn_id, &hid_filter_service_uuid);
         break;
     case ESP_GATTC_CFG_MTU_EVT:
         ESP_LOGI(GATTC_TAG, "MTU exchange, status %d, MTU %d, conn_id %d", param->cfg_mtu.status, param->cfg_mtu.mtu, param->cfg_mtu.conn_id);
+        esp_ble_gattc_search_service(gattc_if, param->cfg_mtu.conn_id, &hid_filter_service_uuid);
         break;
     case ESP_GATTC_SEARCH_RES_EVT: {
         ESP_LOGI(GATTC_TAG, "Search result, conn_id = %x, is primary service %d", p_data->search_res.conn_id, p_data->search_res.is_primary);
@@ -258,59 +273,73 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
                 ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_attr_count error");
                 break;
             }
-        if (count > 0)
-			{
-                esp_gattc_char_elem_t* char_elem_result = NULL;
-
-                char_elem_result = (esp_gattc_char_elem_t *)malloc(sizeof(esp_gattc_char_elem_t) * count);
-                ESP_LOGD(GATTC_TAG, "Found %u characteristics for HID service", count);
-			    memset(char_elem_result, 0, sizeof(esp_gattc_char_elem_t) * count);
-                esp_ble_gattc_get_all_char( gattc_if,
-                                            p_data->search_cmpl.conn_id,
-                                            gl_profile_tab[PROFILE_A_APP_ID].service_start_handle,
-                                            gl_profile_tab[PROFILE_A_APP_ID].service_end_handle,
-                                            char_elem_result,
-                                            &count, 0);
-
-                for (size_t i = 0 ; i < count ; ++i)
-                {
-                    ESP_LOGE(GATTC_TAG, "%u. UUID: %s", i, uuid_to_str(char_elem_result[i].uuid));
-                }
-            }
-
-            ESP_LOGE(GATTC_TAG, "COUNT: %d ", count);
         
             if (count > 0){
-                esp_gattc_char_elem_t hid_char_result;
-                memset(&hid_char_result,0,sizeof(esp_gattc_char_elem_t));
-                // char_elem_result = (esp_gattc_char_elem_t *)malloc(sizeof(esp_gattc_char_elem_t));
-                // if (!char_elem_result){
-                //     ESP_LOGE(GATTC_TAG, "gattc no mem");
-                //     break;
-                // }else{
-                    status = esp_ble_gattc_get_char_by_uuid( gattc_if,
-                                                             p_data->search_cmpl.conn_id,
-                                                             gl_profile_tab[PROFILE_A_APP_ID].service_start_handle,
-                                                             gl_profile_tab[PROFILE_A_APP_ID].service_end_handle,
-                                                             remote_filter_char_uuid,
-                                                             &hid_char_result,
-                                                             &count);
-                    ESP_LOGE(GATTC_TAG, "COUNT: %d ", count);
-                    if (status != ESP_GATT_OK){
-                        ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_char_by_uuid error");
-                        // free(char_elem_result);
-                        // char_elem_result = NULL;
-                        break;
+                for (int i = 3; i < 4; i++)
+                {
+                    memset(&hid_char_result, 0, sizeof(esp_gattc_char_elem_t));
+
+                    status = esp_ble_gattc_get_char_by_uuid(gattc_if,
+                                                            param->search_cmpl.conn_id,
+                                                            gl_profile_tab[PROFILE_A_APP_ID].service_start_handle,
+                                                            gl_profile_tab[PROFILE_A_APP_ID].service_end_handle,
+                                                            hid_char_uuid[3],
+                                                            &hid_char_result,
+                                                            &count);
+
+                    // ESP_LOGI(TAG, "Get CHAR by UUID Trial with UUID %X,changed %X", (int)target_char_uuid[i].uuid.uuid16, char_elem_result_a[i].uuid.uuid.uuid16);
+                    if (status != ESP_GATT_OK)
+                    {
+                        ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_char_by_uuid error for %d", i);
                     }
-            
-                    /*  Every service have only one char in our 'ESP_GATTS_DEMO' demo, so we used first 'char_elem_result' */
+                    else
+                    {
+                        gl_profile_tab[PROFILE_A_APP_ID].char_handle[i] = hid_char_result.char_handle;
+                        
+                        esp_err_t ret_status = esp_ble_gattc_register_for_notify(gattc_if,
+                                                                                    gl_profile_tab[PROFILE_A_APP_ID].remote_bda,
+                                                                                    hid_char_result.char_handle);
+                        if (ret_status != ESP_GATT_OK)
+                        {
+                            ESP_LOGE(GATTC_TAG, "esp_ble_gattc_register_for_notify error ,%s",esp_err_to_name(ret_status));
+                        }
+                        else
+                        {
+                            // ESP_LOGI(TAG, "esp_ble_gattc_register_for_notify OK to handle %X", (int)char_elem_result_a[i].char_handle);
+                        }
+                    }
+                }
+                // memset(&hid_char_result,0,sizeof(esp_gattc_char_elem_t));
+                // // char_elem_result = (esp_gattc_char_elem_t *)malloc(sizeof(esp_gattc_char_elem_t));
+                // // if (!char_elem_result){
+                // //     ESP_LOGE(GATTC_TAG, "gattc no mem");
+                // //     break;
+                // // }else{
+                
+                //     status = esp_ble_gattc_get_char_by_uuid( gattc_if,
+                //                                              p_data->search_cmpl.conn_id,
+                //                                              gl_profile_tab[PROFILE_A_APP_ID].service_start_handle,
+                //                                              gl_profile_tab[PROFILE_A_APP_ID].service_end_handle,
+                //                                              hid_char_uuid[3],
+                //                                              &hid_char_result,
+                //                                              &count);
+                //     ESP_LOGE(GATTC_TAG, "COUNT: %d ", count);
+                //     if (status != ESP_GATT_OK){
+                //         ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_char_by_uuid error");
+                //         // free(char_elem_result);
+                //         // char_elem_result = NULL;
+                //         break;
+                //     }
+
+                //     /*  Every service have only one char in our 'ESP_GATTS_DEMO' demo, so we used first 'char_elem_result' */
                     
-                    gl_profile_tab[PROFILE_A_APP_ID].char_handle[3] = hid_char_result.char_handle;
-                    esp_ble_gattc_register_for_notify(gattc_if, gl_profile_tab[PROFILE_A_APP_ID].remote_bda, hid_char_result.char_handle);
+                //     gl_profile_tab[PROFILE_A_APP_ID].char_handle[3] = hid_char_result.char_handle;
+                //     esp_ble_gattc_register_for_notify(gattc_if, gl_profile_tab[PROFILE_A_APP_ID].remote_bda, hid_char_result.char_handle);
                     
-                // }
-                /* free char_elem_result */
-                // free(char_elem_result);
+                //     ESP_LOGI(GATTC_TAG,"Registering the notification");
+                // // }
+                // /* free char_elem_result */
+                // // free(char_elem_result);
             }else{
                 ESP_LOGE(GATTC_TAG, "no char found");
             }
@@ -321,6 +350,8 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
             ESP_LOGE(GATTC_TAG, "Notification register failed, status %d", p_data->reg_for_notify.status);
         }else{
             ESP_LOGI(GATTC_TAG, "Notification register successfully");
+            
+
             uint16_t count = 0;
             uint16_t notify_en = 1;
             esp_gatt_status_t ret_status = esp_ble_gattc_get_attr_count( gattc_if,
@@ -334,9 +365,12 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
                 ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_attr_count error");
                 break;
             }
+            else{
+                ESP_LOGI(GATTC_TAG, "The number of attributes found is %d", count);
+            }
             uint16_t count1 = 1;
             if (count > 0){
-                descr_elem_result = malloc(sizeof(esp_gattc_descr_elem_t) * count);
+                descr_elem_result = (esp_gattc_descr_elem_t *)malloc(sizeof(esp_gattc_descr_elem_t) * count);
                 if (!descr_elem_result){
                     ESP_LOGE(GATTC_TAG, "malloc error, gattc no mem");
                     break;
@@ -349,15 +383,17 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
                                                                          &count1);
                     if (ret_status != ESP_GATT_OK){
                         ESP_LOGE(GATTC_TAG, "esp_ble_gattc_get_descr_by_char_handle error");
-                        free(descr_elem_result);
-                        descr_elem_result = NULL;
-                        break;
+                        // free(descr_elem_result);
+                        // descr_elem_result = NULL;
+                        // break;
                     }
-                    /* Every char has only one descriptor in our 'ESP_GATTS_DEMO' demo, so we used first 'descr_elem_result' */
+                    else{
+                        ESP_LOGI(GATTC_TAG, "The number of descriptors found is %d", count1);
+                    }
                     if (count > 0 && descr_elem_result[0].uuid.len == ESP_UUID_LEN_16 && descr_elem_result[0].uuid.uuid.uuid16 == ESP_GATT_UUID_CHAR_CLIENT_CONFIG){
                         // esp_ble_auth_req_t auth_req = ESP_LE_AUTH_BOND; // bonding with peer device after authentication
                         // esp_ble_gap_set_security_param(ESP_BLE_SM_AUTHEN_REQ_MODE, &auth_req, sizeof(uint8_t));
-                        ESP_LOGI(GATTC_TAG,"I am here");
+                        
                         //esp_ble_set_encryption(gl_profile_tab[PROFILE_A_APP_ID].remote_bda, ESP_BLE_SEC_ENCRYPT_MITM);
                         esp_err_t status = esp_ble_gattc_write_char_descr(gattc_if,
                                                                         gl_profile_tab[PROFILE_A_APP_ID].conn_id,
@@ -369,7 +405,9 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
                         
                         if (status != ESP_GATT_OK){
                         ESP_LOGE(GATTC_TAG, "esp_ble_gattc_write_char_descr error");
-                        } else {ESP_LOGE(GATTC_TAG, "no problem");}
+                        } else {
+                            ESP_LOGI(GATTC_TAG, "esp_ble_gattc_write_char_descr ");
+                        }
                     }
 
                     
@@ -386,14 +424,38 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
         break;
     }
     case ESP_GATTC_NOTIFY_EVT:
-        if (p_data->notify.is_notify){
-            ESP_LOGI(GATTC_TAG, "Notification received");
-        }else{
-            ESP_LOGI(GATTC_TAG, "Indication received");
+        if (hidh_task_handle)
+        {
+
+            esp_hidh_event_data_t *p_param = NULL;
+            size_t event_data_size = sizeof(esp_hidh_event_data_t);
+            if (p_data->notify.value_len && p_data->notify.value)
+            {
+                event_data_size += p_data->notify.value_len;
+            }
+            if ((p_param = (esp_hidh_event_data_t *)malloc(event_data_size)) == NULL)
+            {
+                ESP_LOGE(GATTC_TAG, "%s malloc event data failed!", __func__);
+                return;
+            }
+            memset(p_param, 0, event_data_size);
+            if (p_data->notify.value_len && p_data->notify.value)
+            {
+                memcpy(((uint8_t *)p_param) + sizeof(esp_hidh_event_data_t), p_data->notify.value,
+                        p_data->notify.value_len);
+            }
+            p_param->input.length = p_data->notify.value_len;
+            p_param->input.data = p_data->notify.value;
+            ESP_LOGV(GATTC_TAG, "DATA is %d %d %d %d", p_param->input.length, p_param->input.data[2], event_data_size, sizeof(esp_hidh_event_data_t));
+            esp_event_post_to(hidh_task_handle, ESP_HIDH_EVENTS, ESP_HIDH_INPUT_EVENT,
+                                p_param, event_data_size, portMAX_DELAY);
+
+            if (p_param)
+            {
+                free(p_param);
+                p_param = NULL;
+            }
         }
-        ESP_LOG_BUFFER_HEX(GATTC_TAG, p_data->notify.value, p_data->notify.value_len); // Log raw data in hex format
-      
-        ESP_LOG_BUFFER_HEX(GATTC_TAG, p_data->notify.value, p_data->notify.value_len);
         break;
     case ESP_GATTC_WRITE_DESCR_EVT:
         if (p_data->write.status != ESP_GATT_OK){
@@ -414,6 +476,7 @@ static void gattc_profile_event_handler(esp_gattc_cb_event_t event, esp_gatt_if_
         //                           ESP_GATT_WRITE_TYPE_RSP,
         //                           ESP_GATT_AUTH_REQ_NONE);
         // break;
+        break;
     case ESP_GATTC_SRVC_CHG_EVT: {
         esp_bd_addr_t bda;
         memcpy(bda, p_data->srvc_chg.remote_bda, sizeof(esp_bd_addr_t));
@@ -506,7 +569,10 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
         }
         ESP_LOGI(GAPC_TAG, "Scanning stop successfully");
         break;
-
+    case ESP_GAP_BLE_SEC_REQ_EVT:
+        ESP_LOGI(GATTC_AUTH, "BLE GAP SEC_REQ");
+        esp_ble_gap_security_rsp(param->ble_security.ble_req.bd_addr, true);
+        break;
     case ESP_GAP_BLE_AUTH_CMPL_EVT: {
         esp_bd_addr_t bd_addr;
         memcpy(bd_addr, param->ble_security.auth_cmpl.bd_addr, sizeof(esp_bd_addr_t));
@@ -515,7 +581,10 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
         ESP_LOGI(GATTC_AUTH, "address type = %d", param->ble_security.auth_cmpl.addr_type);
         ESP_LOGI(GATTC_AUTH, "pair status = %s",param->ble_security.auth_cmpl.success ? "success" : "fail");
         break;}
-
+    case ESP_GAP_BLE_KEY_EVT:
+        // shows the ble key info share with peer device to the user.
+        //ESP_LOGI(TAG, "key type = %s", esp_key_type_to_str(param->ble_security.ble_key.key_type));
+        break;
     case ESP_GAP_BLE_ADV_STOP_COMPLETE_EVT:
         if (param->adv_stop_cmpl.status != ESP_BT_STATUS_SUCCESS){
             ESP_LOGE(GAPC_TAG, "Advertising stop failed, status %x", param->adv_stop_cmpl.status);
@@ -569,9 +638,150 @@ static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp
         }
     } while (0);
 }
+void hidh_callback(void *handler_args, esp_event_base_t base, int32_t id, void *event_data)
+{
+	esp_hidh_event_t event = (esp_hidh_event_t)id;
+	esp_hidh_event_data_t *param = (esp_hidh_event_data_t *)event_data;
 
+	switch (event)
+	{
+	case ESP_HIDH_OPEN_EVENT:
+	{
+		ESP_LOGD(GATTC_TAG, "Callback: Open Event");
+		if (param->open.status == ESP_OK)
+		{
+			const uint8_t *bda = esp_hidh_dev_bda_get(param->open.dev);
+			ESP_LOGI(GATTC_TAG, ESP_BD_ADDR_STR " OPEN: %s", ESP_BD_ADDR_HEX(bda), esp_hidh_dev_name_get(param->open.dev));
+			esp_hidh_dev_dump(param->open.dev, stdout);
+		}
+		else
+		{
+			ESP_LOGE(GATTC_TAG, " OPEN failed!"); // TODO(BS): Restart searching. It stops.
+		}
+		break;
+	}
+	case ESP_HIDH_BATTERY_EVENT:
+	{
+		ESP_LOGD(GATTC_TAG, "Callback: Battery Event");
+		const uint8_t *bda = esp_hidh_dev_bda_get(param->battery.dev);
+		ESP_LOGD(GATTC_TAG, ESP_BD_ADDR_STR " BATTERY: %d%%", ESP_BD_ADDR_HEX(bda), param->battery.level);
+		break;
+	}
+	case ESP_HIDH_INPUT_EVENT:
+	{        
+        ESP_LOGI(GATTC_TAG, "DATA is %d", param->input.data[2]);
+        remote_command_t command;
+        bool valid_command = true;
+
+        // Determine which command to send based on the input data
+        switch (param->input.data[2]) {
+            case COMMAND_ON:
+                command = COMMAND_ON;
+                break;
+            case COMMAND_TOGGLE_COLOR:
+                command = COMMAND_TOGGLE_COLOR;
+                break;
+            case COMMAND_BRIGHTNESS_UP:
+                command = COMMAND_BRIGHTNESS_UP;
+                break;
+            case COMMAND_BRIGHTNESS_DOWN:
+                command = COMMAND_BRIGHTNESS_DOWN;
+                break;
+            case COMMAND_OFF:
+                command = COMMAND_OFF;
+                break;
+            default:
+                ESP_LOGI(GATTC_TAG, "Unknown input value: %d", param->input.data[2]);
+                valid_command = false;  // Mark command as invalid
+                break;
+        }
+
+        // Send the command to the queue only if it's a valid command
+        if (valid_command) {
+            if (xQueueSend(command_queue, &command, portMAX_DELAY) != pdPASS) {
+                ESP_LOGE(GATTC_TAG, "Failed to send command to queue");
+            } else {
+                ESP_LOGI(GATTC_TAG, "Command sent to queue successfully");
+            }
+        } else {
+            ESP_LOGI(GATTC_TAG, "Command not sent to queue due to invalid input");
+        }
+        break;
+    }
+	case ESP_HIDH_FEATURE_EVENT:
+	{
+		ESP_LOGD(GATTC_TAG, "Callback: Feature Event");
+		const uint8_t *bda = esp_hidh_dev_bda_get(param->feature.dev);
+		ESP_LOGD(GATTC_TAG, ESP_BD_ADDR_STR " FEATURE: %8s, MAP: %2u, ID: %3u, Len: %d", ESP_BD_ADDR_HEX(bda),
+				 esp_hid_usage_str(param->feature.usage), param->feature.map_index, param->feature.report_id,
+				 param->feature.length);
+		ESP_LOG_BUFFER_HEX(GATTC_TAG, param->feature.data, param->feature.length);
+		break;
+	}
+	case ESP_HIDH_CLOSE_EVENT: // TODO(BS): Check when this event is triggered
+	{
+		ESP_LOGD(GATTC_TAG, "Callback: Close Event");
+		esp_hidh_dev_free(param->close.dev);
+		//message_sender(BleControllerEvent::kBleConnectionLost); // inform state machine for close event
+		const uint8_t *bda = esp_hidh_dev_bda_get(param->close.dev);
+		// esp_ble_gap_disconnect(bda);
+		ESP_LOGD(GATTC_TAG, ESP_BD_ADDR_STR " CLOSE: %s", ESP_BD_ADDR_HEX(bda), esp_hidh_dev_name_get(param->close.dev));
+		break;
+	}
+	default:
+		ESP_LOGD(GATTC_TAG, "EVENT: %d", event);
+		break;
+	}
+}
+esp_err_t create_hidh_event_loop(esp_hidh_config_t *config)
+{
+	esp_err_t ret;
+	esp_event_loop_args_t hidh_task_args = {
+		.queue_size = 5,
+		.task_name = "esp_ble_hidh_events",
+		.task_priority = uxTaskPriorityGet(NULL),
+		.task_stack_size = config->event_stack_size,
+		.task_core_id = PRO_CPU_NUM};
+
+	do
+	{
+		ret = esp_event_loop_create(&hidh_task_args, &hidh_task_handle);
+		if (ret != ESP_OK)
+		{
+			ESP_LOGE(GATTC_TAG, "%s esp_event_loop_create failed!", __func__);
+			break;
+		}
+
+		ret = esp_event_handler_register_with(hidh_task_handle, ESP_HIDH_EVENTS, ESP_EVENT_ANY_ID, config->callback,
+											  config->callback_arg);
+	} while (0);
+	if (ret != ESP_OK)
+	{
+		if (hidh_task_handle)
+		{
+			esp_event_loop_delete(hidh_task_handle);
+			esp_restart();
+		}
+	}
+	return ret;
+}
 void app_main(void)
 {
+
+    
+    command_queue = xQueueCreate(QUEUE_SIZE, sizeof(remote_command_t)); // Queue to hold command values
+    if (command_queue == NULL) {
+        ESP_LOGE("GATTC_DEMO", "Failed to create command queue");
+        return;  // Exit if the queue creation failed
+    } else {
+        ESP_LOGI("GATTC_DEMO", "Command queue created successfully");
+    }
+    
+    start_led_task();
+ 
+    
+    
+
     // Initialize NVS.
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -610,7 +820,16 @@ void app_main(void)
         ESP_LOGE(GATTC_TAG, "%s enable bluetooth failed: %s", __func__, esp_err_to_name(ret));
         return;
     }
+    esp_hidh_config_t config_ = {
+				.callback = hidh_callback,
+				.event_stack_size = 8 * 1024,
+				.callback_arg = NULL,
+			};
+    ret = create_hidh_event_loop(&config_);
+    if(ret){
+        ESP_LOGE(GATTC_TAG, "%s create hidh event loop = %x", __func__, ret);
 
+    }
     //register the  callback function to the gap module
     ret = esp_ble_gap_register_callback(esp_gap_cb);
     if (ret){
@@ -629,9 +848,13 @@ void app_main(void)
     if (ret){
         ESP_LOGE(GATTC_TAG, "%s gattc app register failed, error code = %x", __func__, ret);
     }
-    esp_err_t local_mtu_ret = esp_ble_gatt_set_local_mtu(500);
-    if (local_mtu_ret){
-        ESP_LOGE(GATTC_TAG, "set local  MTU failed, error code = %x", local_mtu_ret);
-    }
+    // esp_err_t local_mtu_ret = esp_ble_gatt_set_local_mtu(500);
+    // if (local_mtu_ret){
+    //     ESP_LOGE(GATTC_TAG, "set local  MTU failed, error code = %x", local_mtu_ret);
+    // }
+    
+    esp_ble_auth_req_t auth_req = ESP_LE_AUTH_REQ_SC_MITM_BOND;     //bonding with peer device after authentication
+    esp_ble_gap_set_security_param(ESP_BLE_SM_AUTHEN_REQ_MODE, &auth_req, sizeof(uint8_t));
 
+ 
 }

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/main
+# Install script for directory: /Users/memduh/Downloads/gatt-security-client-2/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

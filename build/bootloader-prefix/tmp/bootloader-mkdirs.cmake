@@ -10,18 +10,18 @@ if(NOT EXISTS "/Users/memduh/esp/esp-idf/components/bootloader/subproject")
   file(MAKE_DIRECTORY "/Users/memduh/esp/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader"
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix"
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/tmp"
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp"
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src"
-  "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/tmp"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src"
+  "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

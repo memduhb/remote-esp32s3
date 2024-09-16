@@ -2,34 +2,34 @@
 	"sources" : 
 	[
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/CMakeFiles/bootloader"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/CMakeFiles/bootloader"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/CMakeFiles/bootloader.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/CMakeFiles/bootloader.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/CMakeFiles/bootloader-complete.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/CMakeFiles/bootloader-complete.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule"
 		},
 		{
-			"file" : "/Users/memduh/esp/esp-idf/examples/bluetooth/bluedroid/ble/gatt_client/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
+			"file" : "/Users/memduh/Downloads/gatt-security-client-2/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule"
 		}
 	],
 	"target" : 

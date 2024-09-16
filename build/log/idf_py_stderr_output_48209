@@ -1,0 +1,21 @@
+[0;33m--- esp-idf-monitor 1.4.0 on /dev/cu.usbserial-210 115200 ---[0m
+[0;33m--- Quit: Ctrl+] | Menu: Ctrl+T | Help: Ctrl+T followed by Ctrl+H ---[0m
+[0;33m0x4037e9b2: xt_utils_compare_and_set at /Users/memduh/esp/esp-idf/components/xtensa/include/xt_utils.h:216
+ (inlined by) esp_cpu_compare_and_set at /Users/memduh/esp/esp-idf/components/esp_hw_support/cpu.c:232
+[0m
+[0;33m0x400556d5: strlen in ROM
+0x400556e5: strlen in ROM
+[0m
+[0;33m0x4037e9af: xt_utils_compare_and_set at /Users/memduh/esp/esp-idf/components/xtensa/include/xt_utils.h:216
+ (inlined by) esp_cpu_compare_and_set at /Users/memduh/esp/esp-idf/components/esp_hw_support/cpu.c:232
+0x403816de: spinlock_acquire at /Users/memduh/esp/esp-idf/components/esp_hw_support/include/spinlock.h:121
+ (inlined by) xPortEnterCriticalTimeout at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:473
+0x40381f95: vPortEnterCritical at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/include/freertos/portmacro.h:567
+ (inlined by) xEventGroupSetBits at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/event_groups.c:566
+0x4200bf75: led_on at /Users/memduh/Downloads/gatt-security-client-2/main/led_control.c:89
+0x4200c0f4: led_control_task at /Users/memduh/Downloads/gatt-security-client-2/main/led_control.c:163
+0x403814b9: vPortTaskWrapper at /Users/memduh/esp/esp-idf/components/freertos/FreeRTOS-Kernel/portable/xtensa/port.c:134
+[0m
+[0;33m0x4037eaae: esp_cpu_wait_for_intr at /Users/memduh/esp/esp-idf/components/esp_hw_support/cpu.c:64
+[0m
+[0m
